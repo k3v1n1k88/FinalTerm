@@ -1,57 +1,68 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+  <div>
+    <b-form @submit="onSubmit" @reset="onReset" v-if="show" style="border-color: darkgray; border-radius: 10px; border-right-width: 2px">
+      <div style="text-align: center  ">
+        <label style="font-size: 20px; font-weight: bold">TÀI KHOẢN NHÂN VIÊN</label>
+      </div>
+      <b-form-group id="exampleInputGroup1"
+                    label="Username:"
+                    label-for="exampleInput1"
+      >
+        <b-form-input id="exampleInput1"
+                      type="email"
+                      v-model="form.username"
+                      required
+                      placeholder="Enter your Username"
+                      style="background-color: gainsboro"
+        >
+        </b-form-input>
+      </b-form-group>
+      <b-form-group id="exampleInputGroup2"
+                    label="Password:"
+                    label-for="exampleInput2">
+        <b-form-input id="exampleInput2"
+                      type="text"
+                      v-model="form.password"
+                      required
+                      placeholder="Enter your Password"
+                      style="background-color: gainsboro"
+        >
+        </b-form-input>
+      </b-form-group>
+      <b-button type="submit" variant="primary">Login</b-button>
+      <b-button type="reset" variant="danger">Cancel</b-button>
+    </b-form>
   </div>
 </template>
-
 <script>
 export default {
-  name: "HelloWorld",
-  props: {
-    msg: String
+  data () {
+    return {
+      form: {
+        username: '',
+        password: ''
+      },
+      foods: [
+        { text: 'Select One', value: null },
+        'Carrots', 'Beans', 'Tomatoes', 'Corn'
+      ],
+      show: true
+    }
+  },
+  methods: {
+    onSubmit (evt) {
+      evt.preventDefault()
+      alert(JSON.stringify(this.form))
+    },
+    onReset (evt) {
+      evt.preventDefault()
+      this.form.email = ''
+      this.form.name = ''
+      this.show = false
+      this.$nextTick(() => { this.show = true })
+    }
   }
-};
+}
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>
+
