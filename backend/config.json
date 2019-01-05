@@ -1,0 +1,11 @@
+{
+	"server":{
+		"port":8888
+	},
+	"database":{
+		"type":"MongoDB",
+		"name":"user",
+		"port":27017,
+		"host":"localhost"
+	}
+}
