@@ -1,9 +1,11 @@
 var mongoose = require('mongoose');  
 var UserSchema = new mongoose.Schema({  
   username: String,
-  email: String,
   password: String,
-  role: String,
+  permission: Integer,
+  list_bank_account: String,
+  info:	String,
+  history:String
 });
 mongoose.model('User', UserSchema);
 

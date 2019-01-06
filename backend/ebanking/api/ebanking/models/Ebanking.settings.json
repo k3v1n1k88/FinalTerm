@@ -1,0 +1,45 @@
+{
+  "connection": "default",
+  "collectionName": "",
+  "info": {
+    "name": "ebanking",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "username": {
+      "default": "",
+      "type": "string"
+    },
+    "password": {
+      "default": "",
+      "type": "string"
+    },
+    "permission": {
+      "default": "",
+      "type": "integer"
+    },
+    "email": {
+      "default": "",
+      "type": "email"
+    },
+    "account_name": {
+      "default": "",
+      "type": "string"
+    },
+    "phone": {
+      "default": "",
+      "type": "string"
+    },
+    "history_transfers": {
+      "default": "",
+      "type": "json"
+    },
+    "list_accounts": {
+      "default": "",
+      "type": "json"
+    }
+  }
+}

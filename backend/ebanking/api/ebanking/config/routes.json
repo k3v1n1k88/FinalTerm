@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/ebankings",
+      "handler": "Ebanking.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/ebankings/count",
+      "handler": "Ebanking.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/ebankings/:_id",
+      "handler": "Ebanking.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/ebankings",
+      "handler": "Ebanking.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/ebankings/:_id",
+      "handler": "Ebanking.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/ebankings/:_id",
+      "handler": "Ebanking.destroy",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

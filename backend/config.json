@@ -4,8 +4,8 @@
 	},
 	"database":{
 		"type":"MongoDB",
-		"name":"user",
-		"port":27017,
+		"database_name":"ebankings",
+		"port":1337,
 		"host":"localhost"
 	}
 }
