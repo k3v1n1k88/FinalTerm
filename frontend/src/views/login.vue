@@ -1,3 +1,5 @@
+<script src="https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit" async defer>
+</script>
 <template>
   <div class="form-login">
       <h2 class="text">Login</h2>
@@ -17,17 +19,15 @@
             label-for="exampleInput2">
         <b-input-group  prepend="$">
             <b-form-input id="pwdInput"
-                type="text"
+                type="password"
                 required
                 placeholder="Password">               
             </b-form-input>
            </b-input-group> 
       </b-form-group>
-      <b-form-group id="exampleGroup4">
-        <b-form-checkbox-group v-model="form.checked" id="exampleChecks">
-          <b-form-checkbox value="me">Tôi không phải máy</b-form-checkbox>
-        </b-form-checkbox-group>
-      </b-form-group>
+       <vue-recaptcha sitekey="6LedT9wSAAAAAJnR8DTfGReNvTgliYWy3MZDb7f3">
+          <button>Click me</button>
+        </vue-recaptcha>
       <b-button class="text-center button" type="submit" variant="primary">Login</b-button>
      
     </b-form>
@@ -65,7 +65,7 @@ export default {
       
       show: true
     }
-  },
+  }, 
   methods: {
     onSubmit (evt) {
       evt.preventDefault();
@@ -82,6 +82,7 @@ export default {
       this.show = false;
       this.$nextTick(() => { this.show = true });
     }
+    
   }
 }
 </script>
