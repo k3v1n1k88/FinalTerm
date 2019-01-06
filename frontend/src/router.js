@@ -6,13 +6,17 @@ import dangnhap from "./views/dangnhap.vue";
 import taotaikhoan from "./views/taotaikhoan.vue";
 import themtaikhoan from "./views/themtaikhoan.vue";
 import naptien from "./views/naptien.vue";
+import Home from './views/Home.vue'
 
 Vue.use(Router);
 
+
 export default new Router({
-  mode: "history",
-  base: process.env.BASE_URL,
+  mode: 'history',
+
   routes: [
+
+    // loads Home component
     {
       path: "/login",
       name: "login",
@@ -40,13 +44,24 @@ export default new Router({
     },
     {
       path: "/employees",
-      name: "employees",
+      name: "employees"
+    },
+    {
+      path: '/',
+      name: 'home',
+      component: Home
+    },
+    {
+      path: '/transfer',
+      name: 'transfer',
       // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
+      // this generates a separate chunk (dynamicContent.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: function() {
         return import(/* webpackChunkName: "about" */ "./views/employees.vue");
       }
+      // component: () => import(/* webpackChunkName: "dynamicContent" */ './views/Transfer.vue')
     }
+
   ]
-});
+})
