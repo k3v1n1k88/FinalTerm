@@ -48,8 +48,8 @@ export default new Router({
     },
     {
       path: '/',
-      name: 'home',
-      component: Home
+      name: 'dangnhap',
+      component: dangnhap
     },
     {
       path: '/transfer',
@@ -61,6 +61,11 @@ export default new Router({
         return import(/* webpackChunkName: "about" */ "./views/employees.vue");
       }
       // component: () => import(/* webpackChunkName: "dynamicContent" */ './views/Transfer.vue')
+    },
+    {
+      path: '/home',
+      name: 'home',
+      component: Home
     }
 
   ]

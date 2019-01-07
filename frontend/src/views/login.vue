@@ -2,7 +2,7 @@
 </script>
 <template>
   <div class="form-login">
-      <h2 class="text">Login</h2>
+      <h2>Login</h2>
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
       <b-form-group id="username"
             label-for="exampleInput1"
@@ -25,10 +25,10 @@
             </b-form-input>
            </b-input-group> 
       </b-form-group>
-       <vue-recaptcha sitekey="6LedT9wSAAAAAJnR8DTfGReNvTgliYWy3MZDb7f3">
+       <!-- <vue-recaptcha sitekey="6LedT9wSAAAAAJnR8DTfGReNvTgliYWy3MZDb7f3">
           <button>Click me</button>
-        </vue-recaptcha>
-      <b-button class="text-center button" type="submit" variant="primary">Login</b-button>
+      </vue-recaptcha> -->
+      <!-- <b-button class="text-center button" type="submit" variant="primary">Login</b-button> -->
      
     </b-form>
   </div>

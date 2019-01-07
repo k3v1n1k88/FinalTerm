@@ -1,32 +1,22 @@
 <template>
   <div class="form-login">
-      <h2 class="text">Đăng nhập</h2>
+    <h1 class="text">Sign In</h1>
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
-      <b-form-group id="username"
-            label-for="exampleInput1"
-            >
+        <b-form-group id="username" label-for="exampleInput1">
             <b-input-group prepend="$">
-                <b-form-input id="usernameInput"
-                    type="text"
-                    required
-                    placeholder="User name">
+                <b-form-input id="usernameInput" type="text" required placeholder="User name">
                 </b-form-input>
-        </b-input-group>  
-      </b-form-group>
-      <b-form-group id="password"
-            label-for="exampleInput2">
-        <b-input-group  prepend="$">
-            <b-form-input id="pwdInput"
-                type="password"
-                required
-                placeholder="Password">               
-            </b-form-input>
-           </b-input-group> 
-      </b-form-group>
-      <b-button class="text-center button" type="submit" variant="primary">Login</b-button>
-     
+            </b-input-group>
+        </b-form-group>
+        <b-form-group id="password" label-for="exampleInput2">
+            <b-input-group prepend="$">
+                <b-form-input id="pwdInput" type="password" required placeholder="Password">
+                </b-form-input>
+            </b-input-group>
+        </b-form-group>
+        <b-button class="text-center button" type="submit" variant="primary">Login</b-button>
     </b-form>
-  </div>
+</div>
 </template>
 <style>
    .form-login{

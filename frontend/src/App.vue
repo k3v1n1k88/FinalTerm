@@ -1,49 +1,40 @@
 <template>
-  <!-- <div id="app">
+  <div id="app">
     <div id="nav">
-      <!-- <router-link to="/">Login</router-link> |
-      <router-link to="/employees">Employees</router-link> -->
-    <!-- </div> -->
-    <!-- <router-view/> -->
-
-  <div id="wrapper" :class="wrapperClass">
-
-    <MenuToggleBtn></MenuToggleBtn>
-
-    <Menu></Menu>
-
-    <ContentOverlay></ContentOverlay>
-
-    <router-view></router-view>
+      <router-link to="/">Login</router-link> |
+      <router-link to="/employees">Employees</router-link>
+    </div>
+    <router-view/>
   </div>
+
+
 
 </template>
 
 <script>
 // @ is an alias to /src
-import MenuToggleBtn from '@/components/MenuToggleBtn.vue'
-import Menu from '@/components/Menu.vue'
-import ContentOverlay from '@/components/ContentOverlay.vue'
 
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 export default {
 
   components: {
-    MenuToggleBtn,
-    Menu,
-    ContentOverlay,
+    // MenuToggleBtn,
+    // Menu,
+    // ContentOverlay,
   },
 
   created() {
 
-    window.bus.$on('menu/toggle', () => {
-      window.setTimeout(() => {
-        this.isOpenMobileMenu = !this.isOpenMobileMenu;
-      }, 200);
-    });
+    // window.bus.$on('menu/toggle', () => {
+    //   window.setTimeout(() => {
+    //     this.isOpenMobileMenu = !this.isOpenMobileMenu;
+    //   }, 200);
+    // });
 
-    window.bus.$on('menu/closeMobileMenu', () => {
-      this.isOpenMobileMenu = false;
-    });
+    // window.bus.$on('menu/closeMobileMenu', () => {
+    //   this.isOpenMobileMenu = false;
+    // });
 
   },
 
@@ -63,21 +54,8 @@ export default {
   }
 
 }
->>>>>>> 7409177abf18fae1882b7d99dc08ca99b9d8cab2
-<style>
-  body {
-    background-color: #f8f9fa !important;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-image: url('https://info.daily.airpay.vn/images/cyberpay/background_header.jpg');
-  }
-</style>
+
+
 </script>
 
-<style lang="scss">
-  @import 'styles/layout.scss';
-  @import 'styles/menu-toggle-btn.scss';
-  @import 'styles/menu.scss';
-  @import 'styles/content-overlay.scss';
-  @import 'styles/media-queries.scss';
-</style>
+
