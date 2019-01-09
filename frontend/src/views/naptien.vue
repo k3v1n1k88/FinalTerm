@@ -1,4 +1,10 @@
 <template>
+  <div id="naptien">
+  <MenuToggleBtn></MenuToggleBtn>
+
+  <Menu></Menu>
+
+  <ContentOverlay></ContentOverlay>
   <div class="form-login4">
       <h2 class="text">Nạp tiền</h2>
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
@@ -50,6 +56,7 @@
      
     </b-form>
   </div>
+  </div>
 </template>
 <style>
    .form-login4{
@@ -71,7 +78,16 @@
     }
 </style>
 <script>
+import MenuToggleBtn from '@/components/MenuToggleBtn.vue'
+import Menu from '@/components/Menu.vue'
+import ContentOverlay from '@/components/ContentOverlay.vue'
+
 export default {
+  components: {
+        MenuToggleBtn,
+        Menu,
+        ContentOverlay,
+  },
   data () {
     return {
       form: {

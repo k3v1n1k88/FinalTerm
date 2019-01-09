@@ -1,9 +1,5 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Login</router-link> |
-      <router-link to="/employees">Employees</router-link>
-    </div>
     <router-view/>
   </div>
 
@@ -12,19 +8,26 @@
 </template>
 
 <script>
+import store from './store'
 // @ is an alias to /src
 
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
 export default {
-
-  components: {
-    // MenuToggleBtn,
-    // Menu,
-    // ContentOverlay,
+  data() {
+    return {
+      showMenu: this.$store.getters.isLoggedIn,
+      isOpenMobileMenu: false,
+    };
   },
 
   created() {
+    this.$http.interceptors.response.use(undefined, function (err) {
+      return new Promise(function (resolve, reject) {
+        if (err.status === 401 && err.config && !err.config.__isRetryRequest) {
+            store.dispatch(logout)
+        }
+        throw err;
+      });
+    });
 
     // window.bus.$on('menu/toggle', () => {
     //   window.setTimeout(() => {
@@ -36,26 +39,10 @@ export default {
     //   this.isOpenMobileMenu = false;
     // });
 
-  },
-
-
-  data() {
-    return {
-      isOpenMobileMenu: false,
-    };
-  },
-
-  computed: {
-    wrapperClass() {
-      return {
-        'toggled': this.isOpenMobileMenu === true,
-      };
-    },
   }
 
 }
 
 
 </script>
-
 

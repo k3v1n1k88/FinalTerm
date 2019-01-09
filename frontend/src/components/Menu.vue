@@ -2,7 +2,7 @@
 
   <div class="menu-container">
 
-    <!-- root level itens -->
+    <!-- root level items -->
     <ul class="menu">
 
       <li class="menu__top">
@@ -14,7 +14,7 @@
         @click.prevent="openProjectLink"
         class="menu__title"
         >
-          Internet Banking
+          Internet Banking 
         </a>
       </li>
 
@@ -32,8 +32,8 @@
       <li>
         <a
         href="#"
-        @click.prevent="updateMenu('products')"
-        :class="highlightSection('products')"
+        @click.prevent="updateMenu('transfers')"
+        :class="highlightSection('transfers')"
         >
           <i class="fa fa-tag menu__icon" aria-hidden="true"></i>
           Chuyển khoản
@@ -44,8 +44,8 @@
       <li>
         <a
         href="#"
-        @click.prevent="updateMenu('customers')"
-        :class="highlightSection('customers')"
+        @click.prevent="updateMenu('accounts')"
+        :class="highlightSection('accounts')"
         >
           <i class="fa fa-users menu__icon" aria-hidden="true"></i>
           Quản lý tài khoản
@@ -53,21 +53,31 @@
         </a>
       </li>
 
+      <li v-show="showAdmin">
+        <a
+        href="#"
+        @click.prevent="updateMenu('admin')"
+        :class="highlightSection('admin')"
+        >
+          <i class="fa fa-user menu__icon" aria-hidden="true"></i>
+          Admin
+          <i class="fa fa-chevron-right menu__arrow-icon" aria-hidden="true"></i>
+        </a>
+      </li>
       <li>
         <a
         href="#"
-        @click.prevent="updateMenu('account')"
+        @click.prevent="logout()"
         :class="highlightSection('account')"
         >
-          <i class="fa fa-user menu__icon" aria-hidden="true"></i>
-          Xem lịch sử giao dịch
-          <i class="fa fa-chevron-right menu__arrow-icon" aria-hidden="true"></i>
+          <i class="fa fa-hand-paper-o" aria-hidden="true"></i>
+          Logout
         </a>
       </li>
 
     </ul>
 
-    <!-- context menu: childs of root level itens -->
+    <!-- context menu: childs of root level items -->
     <transition name="slide-fade">
 
       <div class="context-menu-container" v-show="showContextMenu">
@@ -111,16 +121,15 @@
     </transition>
 
   </div>
-
 </template>
 
 <script>
 import menuData from './support/menu-data';
 import kebabCase from 'lodash/kebabCase';
+import store from './../store'
 
 export default {
   name: 'Menu',
-
   data(){
     return {
       contextSection: '',
@@ -134,6 +143,12 @@ export default {
   },
 
   methods: {
+    logout(){
+      store.dispatch('logout')
+        .then(() => {
+          this.$router.push('/dangnhap')
+        })
+    },
 
     openProjectLink() {
       alert('You could open the project frontend in another tab here, so the logged admin could see changes made to the project ;)');
@@ -178,7 +193,7 @@ export default {
     getUrl(item) {
       let sectionSlug = kebabCase(item.txt);
 
-      return `${item.link}/${sectionSlug}`;
+      return `${item.link}`;
     }
 
   },
@@ -187,6 +202,9 @@ export default {
     showContextMenu() {
       return this.menuItens.length;
     },
+    showAdmin(){
+      return store.getters.isAuthenticated;
+    }
   }
 
 }

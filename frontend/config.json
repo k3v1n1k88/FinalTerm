@@ -1,0 +1,11 @@
+{
+  "key_recapcha": "6LfLZYcUAAAAAPzLwIn5EygG6XEmT2dXaalr81bh",
+  "backend_address":"http://localhost:8888",
+  "url":{
+  	"login":"http://localhost:8888/signin",
+  	"register":"http://localhost:8888/register",
+  	"getlist":"http://localhost:8888/getlist",
+  	"create":"http://localhost:8888/create",
+  	"addaccount":"http://localhost:8888/addaccount"
+  }
+}

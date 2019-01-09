@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var axios = require('axios');
 var config = require('../config.json')
+var jwt = require('jsonwebtoken');
 
 // var User = require('./model/User');
 
@@ -23,48 +24,63 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-	var username = req.query.username;
-	var password = req.query.password;
+	var username = req.body.username;
+	var password = req.body.password;
+	var secret_key = config.api_key;
 
-	console.log(`username = ${username} password = ${password}`);
-	console.log(`url database: ${url_database}`)
+    console.log(`username = ${username} password = ${password} secret_key = ${secret_key}`);
+    console.log(`url database: ${url_database}`)
 
-	//var data = "123";
-	//access database
+    if(username === undefined || password === undefined)
+        throw Error('username or password is not valid');
+	
+
 	axios.get(url_database, {
         params: {
-            username: username, // Generates http://localhost:1337/posts?_sort=createdAt:desc
+            username: username, 
             password: password
         }
     })
     .then(response => {
         console.log(response.data)
-    	res.setHeader('Content-Type', 'application/xml');
-		res.send(response.data);
+        if(response.data === undefined || response.data.length == 0 ) throw Error('Invalid username or password');
+
+        var data = response.data[0];
+        var username = data.username;
+        var password = data.password;
+        var permission = data.permission;
+
+        var account_name = data.account_name;
+
+        var payload = {
+        	username: username,
+        	password: password,
+        	permission: permission
+        }
+
+        jwt.sign(payload, secret_key, { expiresIn: '1h' },(err, token) => {
+            if(err) { 
+            	console.log(err); 
+            	throw Error('Error when generate token',err);
+            }
+            console.log(token);
+            res.send({
+				return_code : 200,
+				msg: 'success',
+				token: token,
+				account_name: account_name,
+				permission: permission
+			});
+        });
+		
     })
     .catch(error => {
-        // Handle error.
-        // res.writeHead(200, {'Content-Type': 'text/plain'});
-        // console.log('An error occurred:', error);
-        res.send(err);
-        // data = err;
+        console.log(error);
+        res.send({
+        	return_code: 403,
+        	msg: error.message
+        });
 	});
-
-    //res.json(data);
-	// axios
-	//   .get(url_database, {
-	//     params: {
-	//       _sort: 'createdAt:desc' // Generates http://localhost:1337/posts?_sort=createdAt:desc
-	//     }
-	//   })
-	//   .then(response => {
-	//     // Handle success.
-	//     console.log('Well done, here is the list of posts: ', response.data);
-	//   })
-	//   .catch(error => {
-	//     // Handle error.
-	//     console.log('An error occurred:', error);
-	//   });
 
 });
 

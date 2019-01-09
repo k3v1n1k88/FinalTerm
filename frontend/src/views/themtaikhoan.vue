@@ -1,16 +1,25 @@
 <template>
+  <div id="themtaikhoan">
+  <MenuToggleBtn></MenuToggleBtn>
+
+    <Menu></Menu>
+
+    <ContentOverlay></ContentOverlay>
+  <div>
+    <p>{{message}}</p>
+  </div>
   <div class="form-login2">
       <h2 class="text">Thêm tài khoản</h2>
-    <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+    <b-form @reset="onReset" v-if="show">
       <b-form-group id="username"
             label-for="exampleInput1"
             >
             <b-input-group prepend="$">
-                <b-form-input id="usernameInput"
+                <b-form-input id="usernameInput1"
                     type="text"
                     required
                     placeholder="Tên tài khoản"
-                    v-model="form.username">
+                    v-model="form.account_name">
                 </b-form-input>
         </b-input-group>  
       </b-form-group>
@@ -18,7 +27,7 @@
             label-for="exampleInput2">
         <b-input-group  prepend="$">
             <b-form-input id="pwdInput"
-                type="text"
+                type="tel"
                 required
                 placeholder="Số điện thoại"
                 v-model="form.phone">              
@@ -29,8 +38,8 @@
             label-for="exampleInput1"
             >
             <b-input-group prepend="$">
-                <b-form-input id="usernameInput"
-                    type="text"
+                <b-form-input id="usernameInput2"
+                    type="number"
                     required
                     placeholder="Số tài khoản"
                     v-model="form.account">
@@ -41,8 +50,8 @@
             label-for="exampleInput1"
             >
             <b-input-group prepend="$">
-                <b-form-input id="usernameInput"
-                    type="text"
+                <b-form-input id="usernameInput3"
+                    type="number"
                     required
                     placeholder="Số tiền nạp"
                     v-model="form.money">
@@ -50,9 +59,11 @@
         </b-input-group>  
       </b-form-group>
        
-      <b-button class="text-center button" type="submit" variant="primary">Thêm tài khoản</b-button>
+      <b-button class="text-center button" v-on:click.prevent="onSubmit()" type="button" variant="primary">Thêm tài khoản</b-button>
      
     </b-form>
+
+  </div>
   </div>
 </template>
 <style>
@@ -75,36 +86,46 @@
     }
 </style>
 <script>
+import MenuToggleBtn from '@/components/MenuToggleBtn.vue'
+import Menu from '@/components/Menu.vue'
+import ContentOverlay from '@/components/ContentOverlay.vue'
+import config from '../../config'
+
 import axios from 'axios'
 export default {
+  components: {
+        MenuToggleBtn,
+        Menu,
+        ContentOverlay,
+    },
   data () {
     return {
       form: {
-        username:'',
+        account_name:'',
         phone:'',
         account:'',
         money:''
       },
       
-      show: true
+      show: true,
+      message: ''
     }
   }, 
   methods: {
     onSubmit (evt) {
         var self = this;
-        evt.preventDefault();
+        // evt.preventDefault();
         alert(JSON.stringify(this.form));
-        axios.post('/api/getcontacts', {
+        axios.post(config.url.createaccount, {
                     params: {
-                        username: self.form.username,
-                        username: self.form.phone,
-                        username: self.form.account,
-                        username: self.form.money
-                        
+                        account_name: self.form.account_name,
+                        phone: self.form.phone,
+                        account_number: self.form.account,
+                        deposit: self.form.money
                     }
                 })
                     .then(function(res){
-                        alert(res);
+                        console(res);
                     })
                     .catch(function (error) {
                         console.log(error);

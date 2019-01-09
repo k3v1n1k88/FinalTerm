@@ -7,5 +7,7 @@
 		"database_name":"ebankings",
 		"port":1337,
 		"host":"localhost"
-	}
+	},
+	"key_recapcha":"6LfLZYcUAAAAAFDU6dW97niKIFZgSbAZ_Gv6L6bz",
+	"api_key": "8hfun8d8dnfdinfdfdjejr985956"
 }

@@ -3,7 +3,7 @@ export default {
   // home is a section without childs, set as an empty array
   home: [],
 
-  products: [
+  transfers: [
 
     {
       type: 'title',
@@ -31,7 +31,7 @@ export default {
 
   ],
 
-  customers: [
+  accounts: [
 
     {
       type: 'title',
@@ -41,73 +41,50 @@ export default {
 
     {
       type: 'link',
-      txt: 'Đóng tài khoản thanh toán',
-      link: '/page',
+      txt: 'Danh sach tai khoan',
+      link: '/danhsachtaikhoan',
     },
 
     {
       type: 'link',
-      txt: 'List Contacts',
-      link: '/page',
+      txt: 'Dong tai khoan',
+      link: '/remove-accounts',
     },
 
     {
       type: 'link',
-      txt: 'List Newsletters',
-      link: '/page',
+      txt: 'Lich su giao dich',
+      link: '/transfers-history',
     },
 
   ],
 
-  account: [
+  admin: [
 
     {
       type: 'title',
-      txt: 'My Account',
+      txt: 'Admin',
       icon: 'fa fa-user context-menu__title-icon',
     },
 
     {
       type: 'link',
-      txt: 'Change Password',
-      link: '/page',
+      txt: 'Tao tai khoan',
+      link: '/taotaikhoan',
     },
 
     {
       type: 'link',
-      txt: 'Change Settings',
-      link: '/page',
+      txt: 'Them tai khoan thanh toan',
+      link: '/themtaikhoan',
     },
 
     {
       type: 'link',
-      txt: 'Logout',
-      link: '/page',
-    },
-
-    {
-      type: 'title',
-      txt: 'Change Subscription',
-      icon: 'fa fa-credit-card context-menu__title-icon',
-    },
-
-    {
-      type: 'link',
-      txt: 'Plans',
-      link: '/page',
-    },
-
-    {
-      type: 'link',
-      txt: 'Payment Settings',
-      link: '/page',
-    },
-
-    {
-      type: 'link',
-      txt: 'Payment History',
-      link: '/page',
-    },
+      txt: 'Nap tien vao tai khoan',
+      link: '/naptien',
+      icon: 'fa fa-credit-card context-menu__title-icon'
+    }
 
   ],
 

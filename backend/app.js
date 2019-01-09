@@ -7,6 +7,9 @@ var cors = require('cors');
 
 var indexRouter = require('./apiControllers/index');
 var signinRouter = require('./apiControllers/signin');
+var getlistRouter = require('./apiControllers/getlist');
+var createRouter = require('./apiControllers/create')
+var addaccountRouter = require('./apiControllers/addaccount');
 
 var app = express();
 
@@ -21,5 +24,8 @@ app.use(cors())
 
 app.use('/', indexRouter);
 app.use('/signin', signinRouter);
+app.use('/getlist', getlistRouter);
+app.use('/create', createRouter);
+app.use('/addaccount', addaccountRouter);
 
 module.exports = app;
